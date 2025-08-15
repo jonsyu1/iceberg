@@ -392,6 +392,10 @@ public class IcebergSortCompactionBenchmark {
                 "spark.sql.catalog.spark_catalog", "org.apache.iceberg.spark.SparkSessionCatalog")
             .config("spark.sql.catalog.spark_catalog.type", "hadoop")
             .config("spark.sql.catalog.spark_catalog.warehouse", getCatalogWarehouse())
+            .config("spark.ui.enabled", false)
+            .config("spark.driver.memory", "8g")
+            .config("spark.driver.host", "127.0.0.1")
+            .config("spark.driver.log.localDir", "jyu-benchmark")
             .master("local[*]");
     spark = builder.getOrCreate();
     Configuration sparkHadoopConf = spark.sessionState().newHadoopConf();
